@@ -1,18 +1,35 @@
 doctype html
 html(lang="es")
   head
-    title API How To
+    title API Products
+    meta(charset="UTF-8")
     link(rel='stylesheet', href='/styles/styles.css')
   body
-    h2= titulo
-    h3= aviso
-    p=howto
+    h1 Wellcome to Products API
+    h2 Register to get API key!
+    p (to provide it, place it on header 'api-key' or as URL param 'apikey')
+    
     table
-        th="Operation"
-        th="API endpoint"
-        each ruta in rutas
-            tr 
-                each val in ruta
-                    td= val
-</body>
-</html>
+      thead
+        tr
+          th Operation
+          th API endpoint
+      tbody
+        tr
+          td Register
+          td POST /api/users/register
+        tr
+          td List all products
+          td GET /api/products
+        tr
+          td List products by ID
+          td GET /api/products/:productID
+        tr
+          td Create product
+          td POST /api/products
+        tr
+          td Update product
+          td PUT /api/products/:productID
+        tr
+          td Delete product
+          td DELETE /api/products/:productID

@@ -1,21 +1,28 @@
-const express = require('express')
-const products_routes = require('./routes/products.js')
-const slugify = require('slugify')
+const express = require('express');
+const path = require('path');
+const products_routes = require('./routes/products.js');
+const slugify = require('slugify');
 
-const app = express()
+const app = express();
 
-// Configuración de plantillas
-app.set('views', './views');
+// Configuración de Motor de Plantillas
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(express.static('views'));
 
-app.use(express.json())
+// ARCHIVOS ESTÁTICOS
+// Esto hace que lo que hay en /views sea accesible. 
+// Tu CSS se cargará desde: /styles/styles.css
+app.use(express.static(path.join(__dirname, 'views')));
 
-// Usamos las rutas de productos
-app.use('/', products_routes)
+app.use(express.json());
 
-app.listen(5000, () => {
-    const mensaje = 'server is listening on port 5000';
+// Rutas
+app.use('/', products_routes);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    // Tarea 5: Slugify
+    const mensaje = 'server is listening on port ' + PORT;
     const mensajeSlug = slugify(mensaje, { replacement: '*' });
-    console.log(mensajeSlug); 
-})
+    console.log(mensajeSlug);
+});
