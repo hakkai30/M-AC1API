@@ -1,6 +1,6 @@
 const express = require('express')
 const products_routes = require('./routes/products.js')
-const slugify = require('slugify') // <-- 1. AÑADIMOS ESTA LÍNEA
+const slugify = require('slugify') 
 
 //Server instantiation
 const app = express()
@@ -13,19 +13,14 @@ app.use(express.static('views'));
 //Midleware
 app.use(express.json())
 
-// --- NUEVA RUTA PARA ARREGLAR "Cannot GET /" ---
-app.get('/', (req, res) => {
-    res.render('index'); // Renderiza tu archivo index.pug
-});
-// -----------------------------------------------
-
+// Dejamos que el enrutador de productos gestione las rutas
 app.use('/', products_routes)
 
 //Server startup
 app.listen(5000, () => {
-    // <-- 2. MODIFICAMOS EL MENSAJE DE ARRANQUE
+    // TAREA 5: Mensaje de arranque con slugify
     const mensaje = 'server is listening on port 5000';
     const mensajeSlug = slugify(mensaje, { replacement: '*' });
     
-    console.log(mensajeSlug); // Imprimirá: server*is*listening*on*port*5000
+    console.log(mensajeSlug); 
 })
