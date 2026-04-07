@@ -1,26 +1,21 @@
 const express = require('express')
 const products_routes = require('./routes/products.js')
-const slugify = require('slugify') 
+const slugify = require('slugify')
 
-//Server instantiation
 const app = express()
 
-//Server configuration: template engine
+// Configuración de plantillas
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(express.static('views'));
 
-//Midleware
 app.use(express.json())
 
-// Dejamos que el enrutador de productos gestione las rutas
+// Usamos las rutas de productos
 app.use('/', products_routes)
 
-//Server startup
 app.listen(5000, () => {
-    // TAREA 5: Mensaje de arranque con slugify
     const mensaje = 'server is listening on port 5000';
     const mensajeSlug = slugify(mensaje, { replacement: '*' });
-    
     console.log(mensajeSlug); 
 })
