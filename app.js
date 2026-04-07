@@ -9,8 +9,16 @@ const app = express()
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(express.static('views'));
+
 //Midleware
 app.use(express.json())
+
+// --- NUEVA RUTA PARA ARREGLAR "Cannot GET /" ---
+app.get('/', (req, res) => {
+    res.render('index'); // Renderiza tu archivo index.pug
+});
+// -----------------------------------------------
+
 app.use('/', products_routes)
 
 //Server startup
