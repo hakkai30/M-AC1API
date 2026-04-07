@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node --unhandled-rejections=strict app.js",
     "dev": "nodemon app.js",
-    "build:css": "sass ./views/styles/main.scss ./views/styles/styles.css",
-    "build": "npm install && npm run build:css"
+    "build": "sass ./views/styles/main.scss ./views/styles/styles.css"
   },
   "keywords": [],
   "author": "Robin",
@@ -17,10 +16,10 @@
     "mongodb": "^7.1.1",
     "mongoose": "^7.0.3",
     "pug": "^3.0.2",
-    "slugify": "^1.6.9"
+    "slugify": "^1.6.9",
+    "sass": "^1.77.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14",
-    "sass": "^1.99.0"
+    "nodemon": "^3.1.14"
   }
 }
